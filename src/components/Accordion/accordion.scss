@@ -1,0 +1,59 @@
+.panels {
+    display: flex;
+    width: 100%;
+    overflow: hidden;
+    cursor: pointer;
+}
+
+.panel {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    color: white;
+    text-align: center;
+    background-position: center;
+    background-size: cover;
+    transition:
+        font-size 0.7s cubic-bezier(0.61, -0.19, 0.7, -0.11),
+        flex 0.7s cubic-bezier(0.61, -0.19, 0.7, -0.11),
+        background 0.2s;
+    transition: all 0.5s;
+
+    &:hover {
+        transform: scale(1.06);
+    }
+}
+
+/* Flex Children */
+.panel > * {
+    display: flex;
+    flex: 1 0 auto;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    margin: 0;
+    transition: transform 0.5s;
+}
+
+.panel > *:first-child {
+    transform: translateY(-100%);
+}
+
+.panel.open-active > *:first-child {
+    transform: translateY(0);
+}
+
+.panel > *:last-child {
+    transform: translateY(100%);
+}
+
+.panel.open-active > *:last-child {
+    transform: translateY(0);
+}
+
+.panel.open {
+    flex: 5;
+}
