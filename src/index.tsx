@@ -7,10 +7,11 @@ import './assets/css/base.css';
 import './assets/scss/global.scss';
 import './assets/css/tailwind.css';
 import 'animate.css';
+import 'swiper/swiper.min.css';
 
 ReactDOM.render(
     <React.StrictMode>
-        <App />,
+        <App />
     </React.StrictMode>,
     document.getElementById('root'),
 );
