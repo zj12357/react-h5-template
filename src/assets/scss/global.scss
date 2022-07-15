@@ -1,68 +1,12 @@
 html,
 body {
+    padding-top: constant(safe-area-inset-top);
+    padding-top: env(safe-area-inset-top);
+    padding-bottom: constant(safe-area-inset-bottom); /* 兼容 iOS < 11.2 */
+    padding-bottom: env(safe-area-inset-bottom); /* 兼容 iOS >= 11.2 */
     background: #f7f7f7;
 }
 
 #nprogress .bar {
     background: $primary-color !important; //自定义Nprogress颜色
 }
-
-//定义主题色
-// [data-theme='light'] {
-//     --m-theme-bg-color: #f8413d;
-//     --m-theme-font-color: #fff;
-
-//     --ant-primary-color: rgb(248, 65, 61);
-//     --ant-primary-color-disabled: #ffe7e3;
-//     --ant-primary-color-hover: #ff7069;
-//     --ant-primary-color-active: #ab1a21;
-//     --ant-primary-color-outline: rgba(248, 65, 61, 0.2);
-//     --ant-primary-color-deprecated-bg: #ffe7e3;
-//     --ant-primary-color-deprecated-border: #ff9a91;
-//     --ant-primary-1: #fff3f0;
-//     --ant-primary-2: #ffe7e3;
-//     --ant-primary-3: #ffc2ba;
-//     --ant-primary-4: #ff9a91;
-//     --ant-primary-5: #ff7069;
-//     --ant-primary-6: #f8413d;
-//     --ant-primary-7: #d12a2d;
-//     --ant-primary-8: #ab1a21;
-//     --ant-primary-9: #850d17;
-//     --ant-primary-10: #5e0813;
-//     --ant-primary-color-deprecated-l-35: rgb(254, 234, 233);
-//     --ant-primary-color-deprecated-l-20: rgb(252, 161, 159);
-//     --ant-primary-color-deprecated-t-20: rgb(249, 103, 100);
-//     --ant-primary-color-deprecated-t-50: rgb(252, 160, 158);
-//     --ant-primary-color-deprecated-f-12: rgba(248, 65, 61, 0.12);
-//     --ant-primary-color-active-deprecated-f-30: rgba(255, 243, 240, 0.3);
-//     --ant-primary-color-active-deprecated-d-02: rgb(255, 235, 230);
-// }
-// [data-theme='dark'] {
-//     --m-theme-bg-color: #1a2944;
-//     --m-theme-font-color: red;
-
-//     --ant-primary-color: rgb(26, 41, 68);
-//     --ant-primary-color-disabled: #717478;
-//     --ant-primary-color-hover: #2c3a52;
-//     --ant-primary-color-active: #000000;
-//     --ant-primary-color-outline: rgba(26, 41, 68, 0.2);
-//     --ant-primary-color-deprecated-bg: #717478;
-//     --ant-primary-color-deprecated-border: #424e5e;
-//     --ant-primary-1: #7d8185;
-//     --ant-primary-2: #717478;
-//     --ant-primary-3: #5c636b;
-//     --ant-primary-4: #424e5e;
-//     --ant-primary-5: #2c3a52;
-//     --ant-primary-6: #1a2944;
-//     --ant-primary-7: #0a111f;
-//     --ant-primary-8: #000000;
-//     --ant-primary-9: #000000;
-//     --ant-primary-10: #000000;
-//     --ant-primary-color-deprecated-l-35: rgb(83, 121, 189);
-//     --ant-primary-color-deprecated-l-20: rgb(54, 85, 142);
-//     --ant-primary-color-deprecated-t-20: rgb(72, 84, 105);
-//     --ant-primary-color-deprecated-t-50: rgb(141, 148, 162);
-//     --ant-primary-color-deprecated-f-12: rgba(26, 41, 68, 0.12);
-//     --ant-primary-color-active-deprecated-f-30: rgba(125, 129, 133, 0.3);
-//     --ant-primary-color-active-deprecated-d-02: rgb(120, 124, 128);
-// }

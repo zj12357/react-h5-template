@@ -7,11 +7,10 @@
 
 import { MouseEvent } from 'react';
 import Clipboard from 'clipboard';
-import { message } from 'antd';
 
-export const clipboardSuccess = () => message.success('复制成功');
+export const clipboardSuccess = () => {};
 
-export const clipboardError = () => message.success('复制失败');
+export const clipboardError = () => {};
 
 export const handleClipboard = (text: string, event: MouseEvent) => {
     const clipboard = new Clipboard(event.target as Element, {

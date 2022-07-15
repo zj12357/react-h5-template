@@ -8,4 +8,5 @@
 import useUpdate from './useUpdate';
 import useInitial from './useInitial';
 import usePrevious from './usePrevious';
-export { useUpdate, useInitial, usePrevious };
+import useUpdateEffect from './useUpdateEffect';
+export { useUpdate, useInitial, usePrevious, useUpdateEffect };

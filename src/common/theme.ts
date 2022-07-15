@@ -7,7 +7,6 @@
 import 'mutationobserver-shim'; // 兼容ie8
 import cssVars from 'css-vars-ponyfill'; // css var 的垫片
 import localforage from 'localforage';
-import { ConfigProvider } from 'antd';
 
 export const themeOptions: {
     dark: {
@@ -40,10 +39,6 @@ export const initTheme = (theme: 'dark' | 'light') => {
         // 当添加，删除或修改其<link>或<style>元素的禁用或href属性时，ponyfill将自行调用
         onlyLegacy: false, // false 默认将css变量编译为浏览器识别的css样式 true 当浏览器不支持css变量的时候将css变量编译为识别的css
     });
-    ConfigProvider.config({
-        theme: {
-            primaryColor: themeOptions[theme]['--m-theme-bg-color'],
-        },
-    });
+
     localforage.setItem('mtheme', theme);
 };

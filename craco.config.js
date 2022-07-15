@@ -121,9 +121,23 @@ module.exports = {
             '.css',
             '.less',
             '.scss',
+            '.png',
+            '.svg',
+            '.jpg',
+            '.webp',
         ],
         alias: {
             '@': resolve('src'),
+        },
+        configure: (webpackConfig, { env, paths }) => {
+            // 修改build的生成文件名称
+            paths.appBuild = 'dist';
+            webpackConfig.output = {
+                ...webpackConfig.output,
+                path: resolve('dist'),
+                publicPath: '/',
+            };
+            return webpackConfig;
         },
         plugins: [
             new WebpackBar({

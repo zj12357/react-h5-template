@@ -1,6 +1,4 @@
 import React from 'react';
-import { Result } from 'antd';
-import { DisconnectOutlined } from '@ant-design/icons';
 import { debounce } from 'lodash';
 import { ComponentType, FC, useEffect, useState } from 'react';
 import { createUseStyles } from 'react-jss';
@@ -44,13 +42,7 @@ export default function withOfflineMask<Props>(
         return (
             <>
                 <WrappedComponent {...props} />
-                <Result
-                    className={classes.mask}
-                    status="error"
-                    icon={<DisconnectOutlined />}
-                    title="与服务器的连接丢失"
-                    subTitle="请检查您的互联网连接，然后重试"
-                />
+                <span>请检查您的互联网连接，然后重试</span>
             </>
         );
     };

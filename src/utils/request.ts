@@ -1,5 +1,4 @@
 import axios from 'axios';
-import { message } from 'antd';
 import { isMobile } from 'licia';
 import NProgress from 'nprogress';
 import 'nprogress/nprogress.css';
@@ -46,24 +45,15 @@ service.interceptors.response.use(
         // You can change this part for your own usage.
         const res = response.data;
         if (res.code !== 200) {
-            message.error(res.msg || '请求错误');
-            if (
-                res.code === 50008 ||
-                res.code === 50012 ||
-                res.code === 50014
-            ) {
-                message.info('你已被登出，请重新登录').then(() => {
-                    localStorage.clear();
-                    window.location.reload();
-                });
-            }
+            console.error(res.msg || '请求错误');
+
             // return Promise.reject(new Error(res.msg || "Error"));
         } else {
             return response.data;
         }
     },
     (error) => {
-        message.error(error.message);
+        console.error(error.msg || '请求错误');
         return Promise.reject(error);
     },
 );
