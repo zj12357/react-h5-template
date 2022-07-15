@@ -4,39 +4,91 @@
  * @autor: Full
  * @date: Do not edit
  */
-import React, { FC, memo } from 'react';
-import { LazyLoadImage } from 'react-lazy-load-image-component';
-import './index.scoped.scss';
+import React, { FC, memo, HTMLAttributes, useState, useEffect } from 'react';
+import LazyLoad from 'react-lazyload';
+import classnames from 'classnames';
+import loadImage from '@/utils/loadImage';
+import defaultImage from '@/assets/images/icon/bg-logo-icon.svg';
 
-type ImagelazyProps = {
+interface ImagelazyProps extends HTMLAttributes<HTMLImageElement> {
     src: string;
     alt?: string;
-    width: number | string;
-    height: number | string;
-};
+    imageClassName?: string | undefined;
+    boxClassName?: string | undefined;
+    iconClasssName?: string | undefined;
+    boxIconClassName?: string | undefined;
+}
 
-const ImageLazy: FC<ImagelazyProps> = ({ src, alt, width, height }) => (
+interface PlaceholderProps {
+    iconClasssName?: string | undefined;
+    boxIconClassName?: string | undefined;
+}
+const Placeholder = ({
+    iconClasssName = 'w-[80px]',
+    boxIconClassName = 'w-full h-full rounded-[8px]',
+}: PlaceholderProps) => (
     <div
-        style={{ width: width + 'px', height: height + 'px' }}
-        className="lazyload-wrapper"
+        className={classnames(
+            'bg-[#423F3A] flex justify-center items-center',
+            boxIconClassName,
+        )}
     >
-        <LazyLoadImage
-            alt={alt}
-            key={src}
-            placeholder={
-                <div className="image-cover">
-                    <img
-                        src={
-                            require('@/assets/images/home/video-player-bg.png')
-                                .default
-                        }
-                        alt={alt}
-                    />
-                </div>
-            }
-            src={src}
-        />
+        <img src={defaultImage} alt="" className={iconClasssName} />
     </div>
 );
+
+const ImageLazy: FC<ImagelazyProps> = ({
+    src,
+    alt,
+    imageClassName,
+    boxClassName,
+    iconClasssName,
+    boxIconClassName,
+}) => {
+    const [loadFail, setLoadFail] = useState(true);
+
+    const imagePromise = () => {
+        loadImage(src)
+            .then(() => {
+                setLoadFail(false);
+            })
+            .catch(() => {
+                setLoadFail(true);
+            });
+    };
+
+    useEffect(() => {
+        if (src) {
+            imagePromise();
+        } else {
+            setLoadFail(true);
+        }
+    }, [src]);
+
+    return (
+        <>
+            {loadFail ? (
+                <div className={classnames(boxClassName)}>
+                    <Placeholder
+                        iconClasssName={iconClasssName}
+                        boxIconClassName={boxIconClassName}
+                    />
+                </div>
+            ) : (
+                <LazyLoad
+                    className={classnames(boxClassName)}
+                    placeholder={
+                        <Placeholder
+                            iconClasssName={iconClasssName}
+                            boxIconClassName={boxIconClassName}
+                        />
+                    }
+                >
+                    <img src={src} alt={alt} className={imageClassName} />
+                </LazyLoad>
+            )}
+        </>
+    );
+};
 
 export default memo(ImageLazy);
